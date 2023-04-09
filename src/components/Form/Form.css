@@ -1,0 +1,57 @@
+form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+}
+.radio{
+    display:flex;
+    margin-bottom: 2rem;
+    width:59%;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-around;
+}
+.radio input{
+   
+    margin-right: 0.5rem;
+}
+.radio div{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+input[type="radio"]{
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #EDDBC7;
+    background-color: #312c40;
+    outline: none;
+    cursor: pointer;
+}
+
+.radio label{
+    color:#EDDBC7;
+    font-size:1.4rem;
+}
+.input-url{
+    display:flex;
+    flex-direction:column;
+    width: 50%;
+    margin-bottom: 2rem;
+}
+.label-url{
+    color:#F6F1F1;
+    font-size:1rem;
+}
+.url{
+    font-size: 1rem;
+    display:flex;
+    align-self: flex-start;
+    width:100%;
+    margin-top:0.5rem;
+    margin-bottom: 1rem;
+    padding:10px;
+    border-radius:5px;
+}

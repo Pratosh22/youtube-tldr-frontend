@@ -1,0 +1,12 @@
+.result__title{
+    margin-top: 4rem;
+}
+.result__img img{
+    border-radius: 1rem;
+}
+.result__summary{
+    margin-bottom: 2rem;
+}
+.result__summary p{
+    width:60%;
+}
