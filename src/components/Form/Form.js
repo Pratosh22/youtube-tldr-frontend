@@ -16,7 +16,7 @@ function Form() {
     setImg("");
 
     e.preventDefault();
-    
+
     if (!url) {
       alert("Please enter a url");
       return;
@@ -55,6 +55,7 @@ function Form() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*',
         },
         body: JSON.stringify({
           message: url,

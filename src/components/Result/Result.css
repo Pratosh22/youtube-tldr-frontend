@@ -10,3 +10,17 @@
 .result__summary p{
     width:60%;
 }
+
+@media screen and (max-width: 768px){
+    h1{
+        font-size: 32px;
+        width:80%;
+    }
+    .result__img img{
+        width:80%;
+    }
+    .result__summary p{
+        text-align: center;
+        width:80%;
+    }
+}

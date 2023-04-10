@@ -32,3 +32,15 @@ p{
 span{
     background-color: #FD5D5D;
 }
+@media screen and (max-width: 768px){
+    h1{
+        font-size: 32px;
+        line-height: 42px;
+    }
+    p{
+        width:90%;
+    }
+    .content{
+        margin-top:4rem;
+    }
+}
