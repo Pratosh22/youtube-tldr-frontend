@@ -16,10 +16,16 @@ function Form() {
     setImg("");
 
     e.preventDefault();
-    if (!url) alert("Please enter a url");
+    
+    if (!url) {
+      alert("Please enter a url");
+      return;
+    }
 
-    if (!url.startsWith("https://www.youtube.com/watch?v="))
+    if (!url.startsWith("https://www.youtube.com/watch?v=")){
       alert("Please enter a valid youtube url");
+      return;
+    }
 
     console.log(document.body.scrollHeight);
     //get video id from url
@@ -107,16 +113,14 @@ function Form() {
         </div>
         <Button />
       </form>
-      {
-        data && (
-          <Result
-            title={title}
-            img_url={img}
-            summary={data}
-            scrollHeight={document.body.scrollHeight}
-          />
-        )
-      }
+      {data && (
+        <Result
+          title={title}
+          img_url={img}
+          summary={data}
+          scrollHeight={document.body.scrollHeight}
+        />
+      )}
     </>
   );
 }
