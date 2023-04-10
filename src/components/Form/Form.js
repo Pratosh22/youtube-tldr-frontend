@@ -22,7 +22,7 @@ function Form() {
       return;
     }
 
-    if (!url.startsWith("https://www.youtube.com/watch?v=")){
+    if (!url.startsWith("https://www.youtube.com/watch?v=")) {
       alert("Please enter a valid youtube url");
       return;
     }
@@ -50,12 +50,13 @@ function Form() {
       setData(data.message);
       setTitle(getTitle.data.items[0].snippet.title);
       setImg(getTitle.data.items[0].snippet.thumbnails.high.url);
-    } else {
+    }
+    if (selection === "explain") {
       const response = await fetch("https://ytldr.onrender.com/explain", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': '*',
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
           message: url,
