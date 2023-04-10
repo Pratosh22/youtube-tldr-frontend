@@ -1,25 +1,24 @@
-import { useRef, useEffect } from "react";
 import "./Home.css";
-import Typed from "typed.js";
 import Form from "../Form/Form";
+import { useTypeWriter } from "@vegadev/react-type-writer";
 function Home() {
-  const el = useRef(null);
-  useEffect(() => {
-    const typed = new Typed(el.current, {
-      strings: ["Summarize", "Explain"],
-      typeSpeed: 100,
-      backSpeed: 40,
-      showCursor: false,
-      loop: true,
-    });
-  }, []);
+  const text = useTypeWriter({
+    text: [
+      "Summarize ",
+      "Explain ",
+    ],
+    infiniteLoop: true,
+    delay: 1000,
+    blinker: '',
+  });
   return (
     <>
       <header>
         <center>
           <h1>
-            <span ref={el} className="typed"></span> any video <br></br>in a
-            click.
+            <span>{text}</span> 
+            
+             any video <br></br>in a click.
           </h1>
         </center>
       </header>
