@@ -29,8 +29,6 @@ function Form() {
       `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&fields=items(id%2Csnippet)&key=${process.env.REACT_APP_YOUTUBE_API}`
     );
 
-    console.log(process.env.REACT_APP_YOUTUBE_API);
-
     if (selection === "summarize") {
       const response = await fetch("https://ytldr.onrender.com/summarize", {
         method: "POST",
