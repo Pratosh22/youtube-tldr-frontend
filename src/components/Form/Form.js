@@ -65,6 +65,7 @@ function Form() {
         setLoading(false);
       } catch (err) {
         alert("Something went wrong, please try again");
+        setLoading(false);
       }
     }
     if (selection === "explain") {
@@ -85,6 +86,7 @@ function Form() {
         setLoading(false);
       } catch (err) {
         alert("Something went wrong, please try again");
+        setLoading(false);
       }
     }
   };
