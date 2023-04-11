@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Button from "../Button/Button";
 import Result from "../Result/Result";
+import Spinner from "../Spinner/Spinner";
 import "./Form.css";
 function Form() {
   const [url, setUrl] = useState("");
@@ -9,6 +10,8 @@ function Form() {
   const [selection, setSelection] = useState("summarize");
   const [title, setTitle] = useState("");
   const [img, setImg] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     //clear previous data
     setData("");
@@ -22,52 +25,69 @@ function Form() {
       return;
     }
 
-    if (!url.startsWith("https://www.youtube.com/watch?v=")) {
-      alert("Please enter a valid youtube url");
+    // if (!url.startsWith("https://www.youtube.com/watch?v=")) {
+    //   alert("Please enter a valid youtube url");
+    //   return;
+    // }
+
+    //get video id from url
+    const videoId = url.split("https://www.youtube.com/watch?v=")[1] || url.split("https://youtu.be/")[1];
+
+    const checkCaptions = await axios.get(
+      `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${process.env.REACT_APP_YOUTUBE_API}`
+    );
+
+    if (checkCaptions.data.items.length === 0) {
+      alert("Video does not have captions");
       return;
     }
-
-    console.log(document.body.scrollHeight);
-    //get video id from url
-    const videoId = url.split("https://www.youtube.com/watch?v=")[1];
-
+    setLoading(true);
     const getTitle = await axios.get(
       `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&fields=items(id%2Csnippet)&key=${process.env.REACT_APP_YOUTUBE_API}`
     );
 
     if (selection === "summarize") {
-      const response = await fetch("https://ytldr.onrender.com/summarize", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: url,
-        }),
-      });
+      try {
+        const response = await fetch("https://ytldr.onrender.com/summarize", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: url,
+          }),
+        });
 
-      const data = await response.json();
-      setData(data.message);
-      setTitle(getTitle.data.items[0].snippet.title);
-      setImg(getTitle.data.items[0].snippet.thumbnails.high.url);
+        const data = await response.json();
+        setData(data.message);
+        setTitle(getTitle.data.items[0].snippet.title);
+        setImg(getTitle.data.items[0].snippet.thumbnails.high.url);
+        setLoading(false);
+      } catch (err) {
+        alert("Something went wrong, please try again");
+      }
     }
     if (selection === "explain") {
-      const response = await fetch("https://ytldr.onrender.com/explain", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: url,
-        }),
-      });
-      const data = await response.json();
-      setData(data.message);
-      setTitle(getTitle.data.items[0].snippet.title);
-      setImg(getTitle.data.items[0].snippet.thumbnails.high.url);
+      try {
+        const response = await fetch("https://ytldr.onrender.com/explain", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: url,
+          }),
+        });
+        const data = await response.json();
+        setData(data.message);
+        setTitle(getTitle.data.items[0].snippet.title);
+        setImg(getTitle.data.items[0].snippet.thumbnails.high.url);
+        setLoading(false);
+      } catch (err) {
+        alert("Something went wrong, please try again");
+      }
     }
   };
-
   const handleRadio = (e) => {
     setSelection(e.target.value);
   };
@@ -114,6 +134,7 @@ function Form() {
         </div>
         <Button />
       </form>
+      {loading && <Spinner />}
       {data && (
         <Result
           title={title}

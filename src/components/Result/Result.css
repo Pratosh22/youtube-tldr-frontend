@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 768px){
-    h1{
+    .result__title h1{
         font-size: 32px;
         width:80%;
     }
