@@ -12,7 +12,7 @@ The YTLDR front end is built using React, a popular JavaScript library for build
 ### To install and run YTLDR on your local machine, follow these steps:
 
 clone the YTLDR repository to your local machine:
-### git clone https://github.com/username/YTLDR.git
+### git clone https://github.com/Pratosh22/youtube-tldr-frontend.git
 
 
 Install the required dependencies using npm:
