@@ -5,4 +5,13 @@
 body{
     background-color:#312c40;
     font-family: 'Heebo', sans-serif;
+    
 }
+@media screen and (max-width: 768px){
+    body{
+       width:100%;
+       
+    }
+    
+}
+    
