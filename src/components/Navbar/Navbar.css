@@ -1,3 +1,15 @@
 nav{
     background-color:#312c40;
 }
+
+@media screen and (max-width: 768px) {
+    .logo{
+        display: flex;
+        justify-content: center;
+
+    }
+    .logo-img{
+        width: 70%;
+    }
+}
+    

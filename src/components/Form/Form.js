@@ -25,10 +25,10 @@ function Form() {
       return;
     }
 
-    // if (!url.startsWith("https://www.youtube.com/watch?v=")) {
-    //   alert("Please enter a valid youtube url");
-    //   return;
-    // }
+    if (!url.startsWith("https://www.youtube.com/watch?v=" || "https://youtu.be/")) {
+      alert("Please enter a valid youtube url");
+      return;
+    }
 
     //get video id from url
     const videoId = url.split("https://www.youtube.com/watch?v=")[1] || url.split("https://youtu.be/")[1];
