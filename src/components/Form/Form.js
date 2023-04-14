@@ -25,13 +25,18 @@ function Form() {
       return;
     }
 
-    if (!url.startsWith("https://www.youtube.com/watch?v=" || "https://youtu.be/")) {
+    if (
+      !url.startsWith("https://www.youtube.com/watch?v=") &&
+      !url.startsWith("https://youtu.be/")
+    ) {
       alert("Please enter a valid youtube url");
       return;
     }
-
+    
     //get video id from url
-    const videoId = url.split("https://www.youtube.com/watch?v=")[1] || url.split("https://youtu.be/")[1];
+    const videoId =
+      url.split("https://www.youtube.com/watch?v=")[1] ||
+      url.split("https://youtu.be/")[1];
 
     const checkCaptions = await axios.get(
       `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${process.env.REACT_APP_YOUTUBE_API}`
